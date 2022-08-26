@@ -19,7 +19,11 @@ Route::get('/about', 'App\Http\Controllers\Home\HomeController@about');
 
 Route::get('/catalog', 'App\Http\Controllers\Catalog\CatalogController@index');
 
+Route::get('/products/{category}', 'App\Http\Controllers\Catalog\CatalogController@product');
+
 Route::get('/cabinet', 'App\Http\Controllers\Cabinet\CabinetController@index');
+
+Route::get('/cabinet/admin', 'App\Http\Controllers\Cabinet\CabinetController@admin');
 
 Auth::routes();
 

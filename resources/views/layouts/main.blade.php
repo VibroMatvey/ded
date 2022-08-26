@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>BUILDAD</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <script src="https://kit.fontawesome.com/9ecae365ed.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/6bb43ed9b0.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <div class="wrapper">
@@ -39,21 +39,37 @@
                 <a href="#popupCart" class="popup-link">
                     <div class="cart">
                         <i class="fa-solid fa-cart-shopping"></i>
+                        <span>2</span>
                     </div>
                 </a>
                 @if(isset($data))
-                    <a href="/cabinet">
-                        <div class="cart">
-                            <i class="fa-solid fa-user"></i>
-                            <span>{{ $data->name }}</span>
-                        </div>
-                    </a>
-                @else
-                <a href="#popupLogin" class="popup-link">
-                    <div class="cart">
-                        <i class="fa-solid fa-user"></i>
-                    </div>
-                </a>
+                    @if($role == 'USER')
+                        <a href="/cabinet">
+                            <div class="cart">
+                                <i class="fa-solid fa-user"></i>
+                                @if (isset($data->name))
+                                    <span>{{ $data->name }}</span>
+                                @endif
+                            </div>
+                        </a>
+                    @endif
+                    @if($role == 'ADMIN')
+                        <a href="/cabinet/admin">
+                            <div class="cart">
+                                <i class="fa-solid fa-user"></i>
+                                @if (isset($data->name))
+                                    <span>{{ $data->name }}</span>
+                                @endif
+                            </div>
+                        </a>
+                    @endif
+                    @if($role == 'GUEST')
+                        <a href="#popupLogin" class="popup-link">
+                            <div class="cart">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                        </a>
+                    @endif
                 @endif
             </div>
         </div>
@@ -62,6 +78,14 @@
         @yield('home')
         @yield('about')
         @yield('catalog')
+        @yield('products')
+        @if(isset($data) )
+            @if($role == 'USER')
+                @yield('cabinet')
+            @else
+                @yield('admin')
+            @endif
+        @endif
     </div>
     <div class="footer">
         <div class="content__footer">
@@ -86,7 +110,8 @@
                         <span class="media__footer_title">Телеграм</span>
                     </div>
                 </a>
-                <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiKndzcsuH5AhWmmIsKHVurDcQQFnoECAsQAQ&url=https%3A%2F%2Fwww.instagram.com%2F&usg=AOvVaw1cBeRoOpMhZ3-x5M1sA3Fm" target="_blank">
+                <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiKndzcsuH5AhWmmIsKHVurDcQQFnoECAsQAQ&url=https%3A%2F%2Fwww.instagram.com%2F&usg=AOvVaw1cBeRoOpMhZ3-x5M1sA3Fm"
+                   target="_blank">
                     <div class="media__footer_item">
                         <i class="fa-brands fa-instagram"></i>
                         <span class="media__footer_title">Инстаграм</span>
@@ -105,6 +130,9 @@
 <div id="popupLogin" class="popup">
     <div class="popup__body">
         <div class="popup__content">
+            <div>
+                <i class="fa-solid fa-xmark close-popup"></i>
+            </div>
             <div class="form__header">
                 <H2>ВХОД</H2>
             </div>
@@ -115,9 +143,10 @@
                         <label for="emaillogin">
                             <span>Эл. почта</span>
                         </label>
-                        <input name="email" type="email" id="emaillogin" class="popup__form_input @error('email') is-invalid @enderror">
+                        <input name="email" type="email" id="emaillogin"
+                               class="popup__form_input @error('email') is-invalid @enderror">
                         @error('email')
-                            <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
@@ -126,12 +155,14 @@
                         <label for="passwordlogin">
                             <span>Пароль</span>
                         </label>
-                        <input name="password" id="passwordlogin" type="password" class="popup__form_input" required autocomplete="current-password">
+                        <input name="password" id="passwordlogin" type="password" class="popup__form_input" required
+                               autocomplete="current-password">
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6 offset-md-4">
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <input class="form-check-input" type="checkbox" name="remember"
+                                       id="remember" {{ old('remember') ? 'checked' : '' }}>
 
                                 <label class="form-check-label" for="remember">
                                     {{ __('Запомнить меня') }}
@@ -187,6 +218,9 @@
     <div class="popup__body">
         <div class="popup__content">
             <div>
+                <i class="fa-solid fa-xmark close-popup"></i>
+            </div>
+            <div>
                 <h2>Корзина</h2>
             </div>
             <div>
@@ -195,5 +229,8 @@
         </div>
     </div>
 </div>
+<script>
+
+</script>
 </body>
 </html>

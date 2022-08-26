@@ -22,3 +22,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('/get', 'App\Http\Controllers\Get\GetController');
     Route::get('/logout', 'App\Http\Controllers\Cabinet\CabinetController@logout');
 });
+
+//Route::get('/products', 'App\Http\Controllers\Catalog\ProductController@index');
+//Route::get('/product/{category}', 'App\Http\Controllers\Catalog\ProductController@show');

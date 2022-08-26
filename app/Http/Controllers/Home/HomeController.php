@@ -3,17 +3,29 @@
 namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\UserResource;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class HomeController extends Controller
 {
     public function index () {
-        $data = auth()->user();
-        return view('home', ['data' => $data]);
+        $userData = new UserResource(auth()->user(User::with('role')->select('role')));
+        if (isset($userData->role)) {
+            $userRole = $userData->role->title;
+        } else {
+            $userRole = 'GUEST';
+        }
+        return view('home', ['data' => $userData, 'role' => $userRole]);
     }
     public function about () {
-        $data = auth()->user();
-        return view('about', ['data' => $data]);
+        $userData = new UserResource(auth()->user(User::with('role')->select('role')));
+        if (isset($userData->role)) {
+            $userRole = $userData->role->title;
+        } else {
+            $userRole = 'GUEST';
+        }
+        return view('about', ['data' => $userData, 'role' => $userRole]);
     }
 }

@@ -1,9 +1,9 @@
 @extends('layouts.main')
 
-@section('cabinet')
+@section('admin')
     <div class="page">
-        <div class="cabinet__page">
-            cabinet page
+        <div class="admin__page">
+            ADMIN PAGE
             <div class="logout__content">
                 <a href="{{ route('logout') }}"
                    class="logout"
@@ -14,9 +14,6 @@
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                     @csrf
                 </form>
-            </div>
-            <div>
-
             </div>
         </div>
     </div>
