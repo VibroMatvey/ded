@@ -19,6 +19,12 @@ class CabinetController extends Controller
             $userRole = 'GUEST';
         }
 
+        if ($userRole == 'ADMIN') {
+            return redirect('/cabinet/admin');
+        } elseif ($userRole == 'GUEST') {
+            return redirect('/');
+        }
+
         return view('cabinet', ['data' => $userData, 'role' => $userRole]);
     }
 
@@ -29,6 +35,10 @@ class CabinetController extends Controller
             $userRole = $userData->role->title;
         } else {
             $userRole = 'GUEST';
+        }
+
+        if ($userRole != 'ADMIN') {
+            return redirect('/cabinet');
         }
 
         return view('admin', ['data' => $userData, 'role' => $userRole]);

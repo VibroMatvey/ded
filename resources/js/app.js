@@ -128,4 +128,12 @@ signinBtn.addEventListener('click', function (e) {
 //
 // })
 
-$('.single-item').slick();
+const btnDropdown = document.querySelector(`#dropdownBtnProducts`)
+btnDropdown.addEventListener('click', function (e) {
+    const list = document.querySelector(`.products__sort_dropdown_items`)
+    if (list.classList.contains('active')) {
+        list.classList.remove("active");
+    } else {
+        list.className += ' active'
+    }
+})

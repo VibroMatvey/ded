@@ -60,21 +60,21 @@
             </div>
             <div class="about__page_info">
                 <div class="about__page_info_content">
-                    <span>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, officiis.
-                        </br>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores aut eveniet labore libero molestias odio praesentium, quaerat saepe tempora veniam vitae.
-                        </br>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, deleniti eos eveniet facilis laboriosam minima nam neque nobis nostrum quaerat tempore, vero.
-                        </br>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, numquam, sit. A aut deserunt dolor doloribus fugit modi repellat! Consequuntur cupiditate laudantium rerum!
-                        </br>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores aut eveniet labore libero molestias odio praesentium, quaerat saepe tempora veniam vitae.
-                        </br>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, deleniti eos eveniet facilis laboriosam minima nam neque nobis nostrum quaerat tempore, vero.
-                        </br>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, numquam, sit. A aut deserunt dolor doloribus fugit modi repellat! Consequuntur cupiditate laudantium rerum!
-                    </span>
+{{--                    <span>--}}
+{{--                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Modi, officiis.--}}
+{{--                        </br>--}}
+{{--                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores aut eveniet labore libero molestias odio praesentium, quaerat saepe tempora veniam vitae.--}}
+{{--                        </br>--}}
+{{--                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, deleniti eos eveniet facilis laboriosam minima nam neque nobis nostrum quaerat tempore, vero.--}}
+{{--                        </br>--}}
+{{--                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, numquam, sit. A aut deserunt dolor doloribus fugit modi repellat! Consequuntur cupiditate laudantium rerum!--}}
+{{--                        </br>--}}
+{{--                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium asperiores aut eveniet labore libero molestias odio praesentium, quaerat saepe tempora veniam vitae.--}}
+{{--                        </br>--}}
+{{--                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Blanditiis, deleniti eos eveniet facilis laboriosam minima nam neque nobis nostrum quaerat tempore, vero.--}}
+{{--                        </br>--}}
+{{--                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, numquam, sit. A aut deserunt dolor doloribus fugit modi repellat! Consequuntur cupiditate laudantium rerum!--}}
+{{--                    </span>--}}
                 </div>
             </div>
         </div>

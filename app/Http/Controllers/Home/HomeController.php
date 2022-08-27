@@ -17,6 +17,11 @@ class HomeController extends Controller
         } else {
             $userRole = 'GUEST';
         }
+
+        if ($userRole == 'ADMIN') {
+            return redirect('/cabinet/admin');
+        }
+
         return view('home', ['data' => $userData, 'role' => $userRole]);
     }
     public function about () {
@@ -26,6 +31,11 @@ class HomeController extends Controller
         } else {
             $userRole = 'GUEST';
         }
+
+        if ($userRole == 'ADMIN') {
+            return redirect('/cabinet/admin');
+        }
+
         return view('about', ['data' => $userData, 'role' => $userRole]);
     }
 }

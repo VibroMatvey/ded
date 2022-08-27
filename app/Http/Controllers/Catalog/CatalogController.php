@@ -24,6 +24,10 @@ class CatalogController extends Controller
             $userRole = 'GUEST';
         }
 
+        if ($userRole == 'ADMIN') {
+            return redirect('/cabinet/admin');
+        }
+
         $categories = CategoryResource::collection(Category::all());
 
         return view('catalog', ['data' => $userData, 'role' => $userRole, 'categories' => $categories]);
@@ -35,6 +39,10 @@ class CatalogController extends Controller
             $userRole = $userData->role->title;
         } else {
             $userRole = 'GUEST';
+        }
+
+        if ($userRole == 'ADMIN') {
+            return redirect('/cabinet/admin');
         }
 
         $products = ProductResource::collection(Product::all()->where('category_id', $category));

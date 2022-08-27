@@ -25,15 +25,30 @@
         </a>
         <div class="body__menu">
             <div class="menu">
-                <div class="menu__item">
-                    <a href="/">Главная</a>
-                </div>
-                <div class="menu__item">
-                    <a href="/about">О нас</a>
-                </div>
-                <div class="menu__item">
-                    <a href="/catalog">Каталог товаров</a>
-                </div>
+                @if($role != 'ADMIN')
+                    <div class="menu__item">
+                        <a href="/">Главная</a>
+                    </div>
+                    <div class="menu__item">
+                        <a href="/about">О нас</a>
+                    </div>
+                    <div class="menu__item">
+                        <a href="/catalog">Каталог товаров</a>
+                    </div>
+                @else
+                    <div class="menu__item">
+                        <a href="/">Категории</a>
+                    </div>
+                    <div class="menu__item">
+                        <a href="/about">Товары</a>
+                    </div>
+                    <div class="menu__item">
+                        <a href="/catalog">Заказы</a>
+                    </div>
+                    <div class="menu__item">
+                        <a href="/catalog">Пользователи</a>
+                    </div>
+                @endif
             </div>
             <div class="log">
                 <a href="#popupCart" class="popup-link">
@@ -82,51 +97,53 @@
         @if(isset($data) )
             @if($role == 'USER')
                 @yield('cabinet')
-            @else
+            @elseif($role == 'ADMIN')
                 @yield('admin')
             @endif
         @endif
     </div>
-    <div class="footer">
-        <div class="content__footer">
-            <div class="numbers__footer">
-                <div class="numbers__footer_item">
-                    <i class="fa-solid fa-phone"></i>
-                    <span>8-800-901-12-12 - Начальство Семен</span>
-                </div>
-                <div class="numbers__footer_item">
-                    <i class="fa-solid fa-phone"></i>
-                    <span>8-800-901-12-12 - Менеджер Снежана</span>
-                </div>
-                <div class="numbers__footer_item">
-                    <i class="fa-solid fa-phone"></i>
-                    <span>8-800-901-12-12 - Юрист Юра</span>
-                </div>
-            </div>
-            <div class="media__footer">
-                <a href="https://web.telegram.org/" target="_blank">
-                    <div class="media__footer_item">
-                        <i class="fa-brands fa-telegram"></i>
-                        <span class="media__footer_title">Телеграм</span>
+    @if($role != 'ADMIN')
+        <div class="footer">
+            <div class="content__footer">
+                <div class="numbers__footer">
+                    <div class="numbers__footer_item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>8-800-901-12-12 - Начальство Семен</span>
                     </div>
-                </a>
-                <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiKndzcsuH5AhWmmIsKHVurDcQQFnoECAsQAQ&url=https%3A%2F%2Fwww.instagram.com%2F&usg=AOvVaw1cBeRoOpMhZ3-x5M1sA3Fm"
-                   target="_blank">
-                    <div class="media__footer_item">
-                        <i class="fa-brands fa-instagram"></i>
-                        <span class="media__footer_title">Инстаграм</span>
+                    <div class="numbers__footer_item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>8-800-901-12-12 - Менеджер Снежана</span>
                     </div>
-                </a>
-                <a href="https://www.google.com/" target="_blank">
-                    <div class="media__footer_item">
-                        <i class="fa-brands fa-google"></i>
-                        <span class="media__footer_title">Гугл</span>
+                    <div class="numbers__footer_item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>8-800-901-12-12 - Юрист Юра</span>
                     </div>
-                </a>
+                </div>
+                <div class="media__footer">
+                    <a href="https://web.telegram.org/" target="_blank">
+                        <div class="media__footer_item">
+                            <i class="fa-brands fa-telegram"></i>
+                            <span class="media__footer_title">Телеграм</span>
+                        </div>
+                    </a>
+                    <a href="https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwiKndzcsuH5AhWmmIsKHVurDcQQFnoECAsQAQ&url=https%3A%2F%2Fwww.instagram.com%2F&usg=AOvVaw1cBeRoOpMhZ3-x5M1sA3Fm"
+                       target="_blank">
+                        <div class="media__footer_item">
+                            <i class="fa-brands fa-instagram"></i>
+                            <span class="media__footer_title">Инстаграм</span>
+                        </div>
+                    </a>
+                    <a href="https://www.google.com/" target="_blank">
+                        <div class="media__footer_item">
+                            <i class="fa-brands fa-google"></i>
+                            <span class="media__footer_title">Гугл</span>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
 </div>
+@endif
 <div id="popupLogin" class="popup">
     <div class="popup__body">
         <div class="popup__content">
