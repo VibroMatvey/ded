@@ -27,7 +27,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-//        return Product::created($request->all());
+        $product = new Product();
+
+        $product->title = request('title');
+        $product->description = request('description');
+        $product->image = $request->file('image')->store('images/products', 'public');
+        $product->price = request('price');
+        $product->category_id = request('category_id');
+
+        $product->save();
+
+        return redirect()->route('admin');
     }
 
     /**

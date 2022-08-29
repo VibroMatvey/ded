@@ -54,7 +54,7 @@
                 <a href="#popupCart" class="popup-link">
                     <div class="cart">
                         <i class="fa-solid fa-cart-shopping"></i>
-                        <span>2</span>
+                        <span>1</span>
                     </div>
                 </a>
                 @if(isset($data))
@@ -94,6 +94,7 @@
         @yield('about')
         @yield('catalog')
         @yield('products')
+        @yield('product')
         @if(isset($data) )
             @if($role == 'USER')
                 @yield('cabinet')
@@ -163,7 +164,7 @@
                         <input name="email" type="email" id="emaillogin"
                                class="popup__form_input @error('email') is-invalid @enderror">
                         @error('email')
-                        <span class="invalid-feedback" role="alert">
+                            <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
@@ -174,6 +175,11 @@
                         </label>
                         <input name="password" id="passwordlogin" type="password" class="popup__form_input" required
                                autocomplete="current-password">
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="row mb-3">
                         <div class="col-md-6 offset-md-4">
@@ -203,18 +209,33 @@
                             <span>Эл. почта</span>
                         </label>
                         <input name="email" id="email" type="email" class="popup__form_input">
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="popup__form_item">
                         <label for="name">
                             <span>Имя</span>
                         </label>
                         <input name="name" id="name" type="text" class="popup__form_input">
+                        @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="popup__form_item">
                         <label for="password">
                             <span>Пароль</span>
                         </label>
                         <input name="password" id="password" type="password" class="popup__form_input">
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                     </div>
                     <div class="popup__form_item">
                         <label for="password_c">
@@ -246,8 +267,5 @@
         </div>
     </div>
 </div>
-<script>
-
-</script>
 </body>
 </html>

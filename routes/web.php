@@ -21,9 +21,13 @@ Route::get('/catalog', 'App\Http\Controllers\Catalog\CatalogController@index');
 
 Route::get('/products/{category}', 'App\Http\Controllers\Catalog\CatalogController@product');
 
+Route::get('/product/{id}', 'App\Http\Controllers\Catalog\CatalogController@showProduct');
+
 Route::get('/cabinet', 'App\Http\Controllers\Cabinet\CabinetController@index');
 
-Route::get('/cabinet/admin', 'App\Http\Controllers\Cabinet\CabinetController@admin');
+Route::get('/cabinet/admin', 'App\Http\Controllers\Cabinet\CabinetController@admin',)->name('admin');
+
+Route::post('/addToCart', 'App\Http\Controllers\Cart\CartController@add');
 
 Auth::routes();
 

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Cabinet;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\CategoryResource;
 use App\Http\Resources\UserResource;
+use App\Models\Category;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\PersonalAccessToken;
@@ -41,7 +43,9 @@ class CabinetController extends Controller
             return redirect('/cabinet');
         }
 
-        return view('admin', ['data' => $userData, 'role' => $userRole]);
+        $categories = CategoryResource::collection(Category::all());
+
+        return view('admin', ['data' => $userData, 'role' => $userRole, 'categories' => $categories]);
     }
 
 

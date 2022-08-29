@@ -10,6 +10,9 @@
                 @foreach($categories as $category)
                     <a href="/products/{{ $category->id }}">
                         <div class="catalog__page_menu_item">
+                            <div class="catalog__page_image">
+                                <img src="{{ asset('/storage/' . $category->image) }}" alt="">
+                            </div>
                             {{ $category->title }}
                         </div>
                     </a>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Catalog;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -25,7 +26,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = new Category();
+
+        $category->title = request('title');
+        $category->image = $request->file('image')->store('images/categories', 'public');
+
+        $category->save();
+
+        return redirect()->route('admin');
     }
 
     /**

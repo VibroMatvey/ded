@@ -24,22 +24,24 @@
                 </div>
             </div>
             <div class="products__page_menu">
-            @foreach($products as $product)
-                <div class="products__item">
-                    <div class="products__item_image">
-                        <img src="{{ $product->image }}.webp" alt="">
-                    </div>
-                    <div class="products__item_title">
-                        {{ $product->title }}
-                    </div>
-                    <div class="products__item_price">
-                        {{ $product->price }} $
-                    </div>
-                    <div class="products__item_add">
-                        <button>Добавить в корзину</button>
-                    </div>
-                </div>
-            @endforeach
+                @foreach($products as $product)
+                    <a href="/product/{{ $product->id }}" style="text-decoration: none">
+                        <div class="products__item">
+                            <div class="products__item_image">
+                                <img src="{{ asset('/storage/' . $product->image) }}" alt="">
+                            </div>
+                            <div class="products__item_title">
+                                {{ $product->title }}
+                            </div>
+                            <div class="products__item_price">
+                                {{ $product->price }} $
+                            </div>
+                            <div class="products__item_add" id="btnCart" data-id="{{ $product->id }}">
+                                <button>Добавить в корзину</button>
+                            </div>
+                        </div>
+                    </a>
+                @endforeach
             </div>
         </div>
     </div>
