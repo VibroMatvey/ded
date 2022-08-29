@@ -138,56 +138,56 @@ document.addEventListener('click', (e)=> {
     }
 })
 
-// let slideIndex = 1;
-// showSlides(slideIndex);
-//
-// document.querySelector(`#minusSlide`).addEventListener('click' , minusSlide)
-// document.querySelector(`#plusSlide`).addEventListener('click' , plusSlide)
-//
-// function plusSlide() {
-//     showSlides(slideIndex += 1);
-// }
-//
-// function minusSlide() {
-//     showSlides(slideIndex -= 1);
-// }
-//
-// function currentSlide(n) {
-//     showSlides(slideIndex = n);
-// }
-//
-// function showSlides(n) {
-//     let i;
-//     let slides = document.getElementsByClassName("item");
-//     let dots = document.getElementsByClassName("slider-dots_item");
-//     if (n > slides.length) {
-//         slideIndex = 1
-//     }
-//     if (n < 1) {
-//         slideIndex = slides.length
-//     }
-//     for (i = 0; i < slides.length; i++) {
-//         slides[i].style.display = "none";
-//     }
-//     for (i = 0; i < dots.length; i++) {
-//         dots[i].className = dots[i].className.replace(" active", "");
-//     }
-//     slides[slideIndex - 1].style.display = "block";
-//     dots[slideIndex - 1].className += " active";
-// }
+let slideIndex = 1;
+showSlides(slideIndex);
 
-// async function submit() {
-//     let response = await fetch('/api/addToCart', {
-//         method: 'POST',
-//         body: 'ok',
-//         headers: {
-//             'X-CSRF-TOKEN': document.querySelector(`meta[name="csrf-token"]`).attributes = 'content'
-//         }
-//     });
-//
-//     let result = await response.json();
-//     console.log(123)
-// }
+document.querySelector(`#minusSlide`).addEventListener('click' , minusSlide)
+document.querySelector(`#plusSlide`).addEventListener('click' , plusSlide)
+
+function plusSlide() {
+    showSlides(slideIndex += 1);
+}
+
+function minusSlide() {
+    showSlides(slideIndex -= 1);
+}
+
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+    let i;
+    let slides = document.getElementsByClassName("item");
+    let dots = document.getElementsByClassName("slider-dots_item");
+    if (n > slides.length) {
+        slideIndex = 1
+    }
+    if (n < 1) {
+        slideIndex = slides.length
+    }
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+    slides[slideIndex - 1].style.display = "block";
+    dots[slideIndex - 1].className += " active";
+}
+
+async function submit() {
+    let response = await fetch('/api/addToCart', {
+        method: 'POST',
+        body: 'ok',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector(`meta[name="csrf-token"]`).attributes = 'content'
+        }
+    });
+
+    let result = await response.json();
+    console.log(123)
+}
 
 const btnsCart = document.querySelectorAll(`#btnCart`)
 
