@@ -69,9 +69,8 @@ class CatalogController extends Controller
 
         $category = CategoryResource::collection(Category::all()->where('id', $product->category_id));
 
-        return view('product', ['data' => $userData, 'role' => $userRole, 'product' => $product, 'category' => $category]);
-    }
+        $session = session('cart');
 
-    public function add (Request $request) {
+        return view('product', ['data' => $userData, 'role' => $userRole, 'product' => $product, 'category' => $category, 'array' => $session]);
     }
 }

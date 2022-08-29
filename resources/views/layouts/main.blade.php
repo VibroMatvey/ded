@@ -164,7 +164,7 @@
                         <input name="email" type="email" id="emaillogin"
                                class="popup__form_input @error('email') is-invalid @enderror">
                         @error('email')
-                            <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
@@ -176,7 +176,7 @@
                         <input name="password" id="passwordlogin" type="password" class="popup__form_input" required
                                autocomplete="current-password">
                         @error('password')
-                            <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
@@ -210,7 +210,7 @@
                         </label>
                         <input name="email" id="email" type="email" class="popup__form_input">
                         @error('email')
-                            <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
@@ -221,7 +221,7 @@
                         </label>
                         <input name="name" id="name" type="text" class="popup__form_input">
                         @error('name')
-                            <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
@@ -232,7 +232,7 @@
                         </label>
                         <input name="password" id="password" type="password" class="popup__form_input">
                         @error('password')
-                            <span class="invalid-feedback" role="alert">
+                        <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
                         @enderror
@@ -261,8 +261,16 @@
             <div>
                 <h2>Корзина</h2>
             </div>
-            <div>
-                items cart
+            <div style="display:flex; flex-direction: column">
+                @foreach($array as $value)
+                    <div class="cart__item">
+                        @foreach($value as $value2)
+                            @foreach($value2->original as $key => $value3)
+                                {{ $key. ' : '. $value3 }}
+                            @endforeach
+                        @endforeach
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

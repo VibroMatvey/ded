@@ -14,6 +14,6 @@ class CartController extends Controller
         $id = response()->json(['id' => $data_id]);
         $qty = response()->json(['qty' => $data_qty]);
 
-        return [$id, $qty];
+        return session()->push('cart', ['id' => $id, 'qty' => $qty]);
     }
 }
