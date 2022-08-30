@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Cart\CartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\Home\HomeController@index');
+Route::get('/', 'App\Http\Controllers\Home\HomeController@index')->name('cart.list');
 
 Route::get('/about', 'App\Http\Controllers\Home\HomeController@about');
 
@@ -27,7 +28,8 @@ Route::get('/cabinet', 'App\Http\Controllers\Cabinet\CabinetController@index');
 
 Route::get('/cabinet/admin', 'App\Http\Controllers\Cabinet\CabinetController@admin',)->name('admin');
 
-Route::post('/addToCart', 'App\Http\Controllers\Cart\CartController@add');
+Route::post('/addToCart', [CartController::class, 'addToCart'])->name('cart.store');
+
 
 Auth::routes();
 

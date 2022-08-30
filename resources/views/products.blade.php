@@ -25,7 +25,7 @@
             </div>
             <div class="products__page_menu">
                 @foreach($products as $product)
-                    <a href="/product/{{ $product->id }}" style="text-decoration: none">
+                    <a href="/product/{{ $product->id }}" style="text-decoration: none; color: #fff">
                         <div class="products__item">
                             <div class="products__item_image">
                                 <img src="{{ asset('/storage/' . $product->image) }}" alt="">
@@ -36,9 +36,15 @@
                             <div class="products__item_price">
                                 {{ $product->price }} $
                             </div>
-                            <div class="products__item_add" id="btnCart" data-id="{{ $product->id }}">
-                                <button>Добавить в корзину</button>
-                            </div>
+                            <a href="#popupAdd" class="popup-link" style="color:#000;">
+                                <div class="popup__addToCart">
+                                    <div class="popup__content_button">
+                                        <div class="popup__button_title">
+                                            <span>Добавить в корзину</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
                     </a>
                 @endforeach

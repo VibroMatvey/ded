@@ -22,21 +22,20 @@
                         <div class="product__price">
                             <span>{{ $product->price }} $</span>
                         </div>
-                        <div class="product__page_quantity">
-                            <input type="number" id="quantity" max="100" min="1" value="1" onkeypress="return false">
-                        </div>
                     </div>
                     <div class="right">
                         <div class="product__description">
                             <span>{{ $product->description }}</span>
                         </div>
-                        <div class="product__addToCart" id="btnCart" data-id="{{ $product->id }}">
-                            <div class="product__button">
-                                <div class="product__button_title">
-                                    <span>Добавить в корзину</span>
+                        <a href="#popupAdd" class="popup-link" style="color:#000;">
+                            <div class="popup__addToCart">
+                                <div class="popup__content_button">
+                                    <div class="popup__button_title">
+                                        <span>Добавить в корзину</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>

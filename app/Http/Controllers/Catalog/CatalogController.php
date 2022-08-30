@@ -10,13 +10,14 @@ use App\Http\Resources\UserResource;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Cookie;
 
 class CatalogController extends Controller
 {
-    public function index (Product $model)
+    public function index(Product $model)
     {
         $userData = new UserResource(auth()->user(User::with('role')->select('role')));
         if (isset($userData->role)) {
@@ -34,7 +35,8 @@ class CatalogController extends Controller
         return view('catalog', ['data' => $userData, 'role' => $userRole, 'categories' => $categories]);
     }
 
-    public function product (Request $request, $category) {
+    public function product(Request $request, $category)
+    {
         $userData = new UserResource(auth()->user(User::with('role')->select('role')));
         if (isset($userData->role)) {
             $userRole = $userData->role->title;
@@ -53,7 +55,8 @@ class CatalogController extends Controller
         return view('products', ['data' => $userData, 'role' => $userRole, 'category' => $category_title, 'products' => $products]);
     }
 
-    public function showProduct ($id) {
+    public function showProduct($id)
+    {
         $userData = new UserResource(auth()->user(User::with('role')->select('role')));
         if (isset($userData->role)) {
             $userRole = $userData->role->title;
@@ -69,8 +72,6 @@ class CatalogController extends Controller
 
         $category = CategoryResource::collection(Category::all()->where('id', $product->category_id));
 
-        $session = session('cart');
-
-        return view('product', ['data' => $userData, 'role' => $userRole, 'product' => $product, 'category' => $category, 'array' => $session]);
+        return view('product', ['data' => $userData, 'role' => $userRole, 'product' => $product, 'category' => $category,]);
     }
 }

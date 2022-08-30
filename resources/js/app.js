@@ -102,8 +102,6 @@ document.addEventListener('keydown', function (e) {
 
 const signinBtn = document.querySelector(`#signinBtn`);
 const signupBtn = document.querySelector(`#signupBtn`);
-const signinBtnSpan = document.querySelector(`.signinBtn`);
-const signupBtnSpan = document.querySelector(`.signupBtn`);
 const signupContainer = document.querySelector(`.signup`)
 const signinContainer = document.querySelector(`.signin`)
 
@@ -121,12 +119,6 @@ signinBtn.addEventListener('click', function (e) {
     document.querySelector(`.form__header h2`).innerHTML = 'Вход'
 })
 
-// const btnDropdown = document.querySelector(`#dropdownBtnProducts`)
-// btnDropdown.addEventListener('click', function (e) {
-//     const list = document.querySelector(`.products__sort_dropdown_items`)
-//         list.className += ' active'
-// })
-
 document.addEventListener('click', (e)=> {
     const list = document.querySelector(`.products__sort_dropdown_items`)
     if (list) {
@@ -138,61 +130,11 @@ document.addEventListener('click', (e)=> {
     }
 })
 
-// let slideIndex = 1;
-// showSlides(slideIndex);
-//
-// document.querySelector(`#minusSlide`).addEventListener('click' , minusSlide)
-// document.querySelector(`#plusSlide`).addEventListener('click' , plusSlide)
-//
-// function plusSlide() {
-//     showSlides(slideIndex += 1);
-// }
-//
-// function minusSlide() {
-//     showSlides(slideIndex -= 1);
-// }
-//
-// function currentSlide(n) {
-//     showSlides(slideIndex = n);
-// }
-//
-// function showSlides(n) {
-//     let i;
-//     let slides = document.getElementsByClassName("item");
-//     let dots = document.getElementsByClassName("slider-dots_item");
-//     if (n > slides.length) {
-//         slideIndex = 1
-//     }
-//     if (n < 1) {
-//         slideIndex = slides.length
-//     }
-//     for (i = 0; i < slides.length; i++) {
-//         slides[i].style.display = "none";
-//     }
-//     for (i = 0; i < dots.length; i++) {
-//         dots[i].className = dots[i].className.replace(" active", "");
-//     }
-//     slides[slideIndex - 1].style.display = "block";
-//     dots[slideIndex - 1].className += " active";
-// }
-
-// async function submit() {
-//     let response = await fetch('/addToCart', {
-//         method: 'POST',
-//         body: 'ok',
-//         headers: {
-//             'X-CSRF-TOKEN': document.querySelector(`meta[name="csrf-token"]`).attributes = 'content'
-//         }
-//     });
-//
-//     let result = await response.json();
-//     console.log(123)
-// }
-
 const btnsCart = document.querySelectorAll(`#btnCart`)
 
 btnsCart.forEach(btnCart => {
     let id = btnCart.getAttribute(`data-id`)
+    const quantityCart = document.querySelector(`#quantityCart`)
 
     btnCart.addEventListener('click', async function (e) {
         e.preventDefault()
@@ -202,7 +144,7 @@ btnsCart.forEach(btnCart => {
             credentials: "same-origin",
             body: JSON.stringify({
                 id: id,
-                qty: quantity
+                qty: quantity,
             }),
             headers: {
                 'X-CSRF-TOKEN': document.querySelector(`meta[name="csrf-token"]`).content,
@@ -211,7 +153,10 @@ btnsCart.forEach(btnCart => {
             }
         });
 
+        quantityCart.innerHTML = Number(quantityCart.innerHTML) + Number(quantity)
+
         let result = await response.json();
+        location.reload()
         console.log(result)
     })
 })
