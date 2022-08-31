@@ -1,9 +1,9 @@
 import './bootstrap';
+
 import.meta.glob([
     '../images/**',
     '../fonts/**',
 ]);
-
 
 const popupLinks = document.querySelectorAll('.popup-link');
 const body = document.querySelector('body');
@@ -53,7 +53,7 @@ function popupOpen(currentPopup) {
     }
 }
 
-function popupClose (popupActive, doUnlock = true) {
+function popupClose(popupActive, doUnlock = true) {
     if (unlock) {
         popupActive.classList.remove('open');
         if (doUnlock) {
@@ -119,10 +119,10 @@ signinBtn.addEventListener('click', function (e) {
     document.querySelector(`.form__header h2`).innerHTML = 'Вход'
 })
 
-document.addEventListener('click', (e)=> {
+document.addEventListener('click', (e) => {
     const list = document.querySelector(`.products__sort_dropdown_items`)
     if (list) {
-        if (e.target.closest('#dropdownBtnProducts') && !list.classList.contains('active')){
+        if (e.target.closest('#dropdownBtnProducts') && !list.classList.contains('active')) {
             list.className += ' active'
         } else if (!e.target.closest('.products__sort') || list.classList.contains('active')) {
             list.classList.remove("active");
@@ -138,7 +138,8 @@ btnsCart.forEach(btnCart => {
 
     btnCart.addEventListener('click', async function (e) {
         e.preventDefault()
-        const quantity = document.querySelector(`#quantity`).value
+        const quantity = document.querySelector(`#quantity_` + id).value
+
         let response = await fetch('/addToCart', {
             method: 'POST',
             credentials: "same-origin",
@@ -153,10 +154,41 @@ btnsCart.forEach(btnCart => {
             }
         });
 
-        quantityCart.innerHTML = Number(quantityCart.innerHTML) + Number(quantity)
+        let result = await response.json();
+        console.log(result)
+        const item = result[id]
+        quantityCart.innerHTML = Number(Object.keys(result).length)
+        location.reload()
+    })
+})
+
+const btnsRemove = document.querySelectorAll(`#remove`)
+
+btnsRemove.forEach(btnRemove => {
+    let id = btnRemove.getAttribute(`data-id`)
+    btnRemove.addEventListener('click', async function (e) {
+        e.preventDefault()
+
+        let response = await fetch('/cartRemove', {
+            method: 'POST',
+            credentials: "same-origin",
+            body: JSON.stringify({
+                id: id,
+            }),
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector(`meta[name="csrf-token"]`).content,
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            }
+        });
 
         let result = await response.json();
-        location.reload()
         console.log(result)
+        const item = document.querySelector(`#totalPrice`)
+        const price = btnRemove.parentNode.parentNode.childNodes[3].childNodes[1].innerHTML
+        const quantityCart = document.querySelector(`#quantityCart`)
+        quantityCart.innerHTML = Number(quantityCart.innerHTML) - 1
+        btnRemove.parentNode.parentNode.parentNode.remove()
+        item.innerHTML = Number(item.innerHTML) - Number(price)
     })
 })

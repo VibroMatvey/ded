@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
@@ -36,6 +38,10 @@ class ProductController extends Controller
         $product->category_id = request('category_id');
 
         $product->save();
+
+        $img = Product::latest()->first();
+
+        Image::make(Storage::path('/public/') . $img->image)->encode('webp', 80)->resize(500, 500)->save(Storage::path('/public/images/products/' . 'sha' . '.webp'));
 
         return redirect()->route('admin');
     }

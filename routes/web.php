@@ -30,6 +30,8 @@ Route::get('/cabinet/admin', 'App\Http\Controllers\Cabinet\CabinetController@adm
 
 Route::post('/addToCart', [CartController::class, 'addToCart'])->name('cart.store');
 
+Route::post('/cartRemove', [CartController::class, 'remove'])->name('cart.remove');
+
 
 Auth::routes();
 

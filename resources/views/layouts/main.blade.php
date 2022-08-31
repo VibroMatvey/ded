@@ -54,7 +54,8 @@
                 <a href="#popupCart" class="popup-link">
                     <div class="cart">
                         <i class="fa-solid fa-cart-shopping"></i>
-                        <span id="quantityCart">{{isset($_COOKIE['cart_id']) ? count(Cart::session($_COOKIE['cart_id'])->getContent()) : '0' }}</span>
+                        <span
+                            id="quantityCart">{{ isset($_COOKIE['cart_id']) ? count(Cart::session($_COOKIE['cart_id'])->getContent()) : '0' }}</span>
                     </div>
                 </a>
                 @if(isset($data))
@@ -261,46 +262,31 @@
             <div>
                 <h2>Корзина</h2>
             </div>
-            <div style="display:flex; flex-direction: column">
-                @foreach(Cart::session($_COOKIE['cart_id'])->getContent() as $item)
-                    <div>
-                        <div>Товар: {{ $item->name }}</div>
-                        <div>Цена: {{ $item->price }}</div>
-                        <div>Кол-во: {{ $item->quantity }}</div>
-                        <div><img src="{{ asset('/storage/' . $item->attributes->image) }}" alt=""></div>
-                    </div>
-{{--                {{ $item }}--}}
-                @endforeach
-                    <div>Итоговая цена: {{ \Cart::session($_COOKIE['cart_id'])->getTotal() }}</div>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="popupAdd" class="popup">
-    <div class="popup__body">
-        <div class="popup__content">
-            <div>
-                <i class="fa-solid fa-xmark close-popup"></i>
-            </div>
-            <div>
-                <label class="text-field__label" for="quantity"><h2>Выберите кол-во</h2></label>
-            </div>
-            <div class="popup__content_quantity">
-                <div class="number">
-                    <button class="number-minus" type="button" onclick="this.nextElementSibling.stepDown(); this.nextElementSibling.onchange();">-</button>
-                    <input type="number" class="popup__content_number" id="quantity" max="100" min="1" value="1" readonly>
-                    <button class="number-plus" type="button" onclick="this.previousElementSibling.stepUp(); this.previousElementSibling.onchange();">+</button>
-                </div>
-                @if(isset($product))
-                <div class="popup__addToCart" id="btnCart" data-id="{{ $product->id }}">
-                    <div class="popup__content_button">
-                        <div class="popup__button_title">
-                            <span>Добавить в корзину</span>
+            <div class="cart__items">
+                @if(isset($_COOKIE['cart_id']))
+                    @foreach(Cart::session($_COOKIE['cart_id'])->getContent() as $item)
+                        <div class="cart__item">
+                            <div class="cart__item_title">
+                                <div>
+                                    <span>{{ $item->quantity }} шт </span>
+                                    <span>{{ $item->name }} </span>
+                                </div>
+                                <div>
+                                    <span>{{ $item->price }}</span> $
+                                    <a href="" id="remove" data-id="{{ $item->id }}" style="color: black">
+                                        <i class="fa-solid fa-trash"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <a href="../product/{{ $item->id }}">
+                                <div class="cart__item_image"><img src="{{ asset('/storage/' . $item->attributes->image) }}" alt=""></div>
+                            </a>
+                            <hr>
                         </div>
-                    </div>
-                </div>
+                    @endforeach
                 @endif
             </div>
+            <div class="cart__item_total">Итоговая цена: <span id="totalPrice">{{ \Cart::session($_COOKIE['cart_id'])->getTotal() }}</span></div>
         </div>
     </div>
 </div>

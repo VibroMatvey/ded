@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Cookie;
 
 class CartController extends Controller
 {
-    public function addToCart(Request $request)
+    public function addToCart (Request $request)
     {
         if (empty($_COOKIE['cart_id'])) {
             setcookie('cart_id', uniqid());
@@ -29,6 +29,17 @@ class CartController extends Controller
                 'image' => $product->image,
             )
         ]);
+
+        return response()->json(\Cart::getContent());
+    }
+
+    public function remove (Request $request) {
+        $cart_id = $_COOKIE['cart_id'];
+
+        $product = Product::where('id', $request->id)->first();
+
+        \Cart::session($cart_id);
+        \Cart::remove($request->id);
 
         return response()->json(\Cart::getContent());
     }

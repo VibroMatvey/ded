@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Catalog;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class CategoryController extends Controller
 {
@@ -32,6 +34,10 @@ class CategoryController extends Controller
         $category->image = $request->file('image')->store('images/categories', 'public');
 
         $category->save();
+
+        $img = Category::first();
+
+        Image::make(Storage::path('/public/') . $img->image)->resize(200, 200)->save(Storage::path('/public/' . $img->image));
 
         return redirect()->route('admin');
     }
